@@ -1,8 +1,8 @@
 import App from "@/app/components/App";
 import Navbar from "@/app/components/Navbar/navbar";
 import "./globals.css";
-import { tempMovieData } from "@/app/components/tempMovieData";
-import { tempWatchedData } from "@/app/data/tempWatchedData";
+import tempMovieData from "@/app/components/tempMovieData";
+import tempWatchedData from "@/app/components/tempWatchedData";
 
 export default function Home() {
   return (
