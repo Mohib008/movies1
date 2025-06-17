@@ -1,7 +1,5 @@
 "use client";
 import { useState } from "react";
-//import "./tempMovieData";
-import "./tempWatchedData";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
