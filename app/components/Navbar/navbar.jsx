@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Logo from "./logo";
-import Input from "./input";
+import Search from "./search";
 import NumResults from "./numResults";
 // Navbar component that combines Logo, Input, and NumResults components
 
@@ -10,7 +10,7 @@ function Navbar() {
     <div>
       <nav className="nav-bar">
         <Logo />
-        <Input />
+        <Search />
         <NumResults />
       </nav>
     </div>

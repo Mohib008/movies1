@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function Input() {
+function Search() {
   const [query, setQuery] = useState("");
 
   return (
@@ -17,4 +17,4 @@ function Input() {
   );
 }
 
-export default Input;
+export default Search;
