@@ -2,6 +2,7 @@
 import React from "react";
 
 function WatchedSummary({ watched }) {
+  const average = (arr) => arr.reduce((acc, cur) => acc + cur, 0) / arr.length;
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgUserRating = average(watched.map((movie) => movie.userRating));
   const avgRuntime = average(watched.map((movie) => movie.runtime));

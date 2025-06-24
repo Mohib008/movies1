@@ -2,9 +2,8 @@
 
 import React from "react";
 import { useState } from "react";
-import Button from "./button";
+import Button from "../button";
 import MoviesList from "./moviesList";
-
 function Box1({ tempMovieData } = appProps) {
   const [isOpen1, setIsOpen1] = useState(true);
 

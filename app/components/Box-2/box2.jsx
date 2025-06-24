@@ -2,13 +2,13 @@
 
 import React from "react";
 import { useState } from "react";
-import Button from "../Box-1/button";
+import Button from "../button";
 import WatchedSummary from "./watchedSummary";
 import WatchedMoviesList from "./watchedMoviesList";
 
 function Box2({ tempWatchedData } = appProps) {
   // Initialize watched with tempWatchedData if provided, otherwise use an empty array
-  const [watched] = useState(tempWatchedData);
+  const [ watched, setWatched ] = useState(tempWatchedData);
   const [isOpen2, setIsOpen2] = useState(true);
 
   return (
@@ -17,8 +17,8 @@ function Box2({ tempWatchedData } = appProps) {
         <Button />
         {isOpen2 && (
           <>
-            <WatchedSummary watched={watched} />
-            <WatchedMoviesList watched={watched} />
+            <WatchedSummary watched={ watched } />
+            <WatchedMoviesList watched={ watched } />
           </>
         )}
       </div>
