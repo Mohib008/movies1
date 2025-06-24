@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useState } from "react";
-import Button from "../button";
+//import Button from "../button";
 import WatchedSummary from "./watchedSummary";
 import WatchedMoviesList from "./watchedMoviesList";
 
@@ -14,7 +14,14 @@ function Box2({ tempWatchedData } = appProps) {
   return (
     <div>
       <div className="box">
-        <Button />
+      
+          <button
+            className="btn-toggle"
+            onClick={() => setIsOpen2((open) => !open)}
+          >
+            {isOpen2 ? "–" : "+"}
+          </button>
+          
         {isOpen2 && (
           <>
             <WatchedSummary watched={ watched } />
