@@ -11,8 +11,8 @@ function Box1({ tempMovieData } = appProps) {
   return (
     <div>
       <div className="box">
-        <Button  />
-        {isOpen1 && ( <MoviesList tempMovieData={tempMovieData} /> )}
+        <Button />
+        {isOpen1 && <MoviesList tempMovieData={tempMovieData} />}
       </div>
     </div>
   );

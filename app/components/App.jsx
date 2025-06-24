@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import Box1 from "./box1";
-import Box2 from "./box2";
+import Box1 from "./Box-1/box1";
+import Box2 from "./Box-2/box2";
 
 export default function App({ tempWatchedData, tempMovieData } = appProps) {
   return (
