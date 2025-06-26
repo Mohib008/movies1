@@ -2,7 +2,7 @@
 import React from "react";
 import { useState } from "react";
 
-function watchedMoviesList({ watched } = appProps) {
+function watchedMoviesList({ watched }) {
   return (
     <div>
       <ul className="list">
