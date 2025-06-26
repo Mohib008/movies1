@@ -6,7 +6,13 @@ function button() {
     <div>
       <button
         className="btn-toggle"
-        onClick={() => setIsOpen2((open) => !open)}
+        onClick={() => {
+          setIsOpen2((open) => !open);
+        }}
+        style={{
+          display: "block, !important",
+          visibility: "visible, !important",
+        }}
       >
         {isOpen2 ? "–" : "+"}
       </button>

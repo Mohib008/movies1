@@ -76,6 +76,7 @@ body {
 .box {
   width: 42rem;
   max-width: 42rem;
+  min-height: 100px;
   background-color: var(--color-background-500);
   border-radius: 0.9rem;
   overflow: scroll;
