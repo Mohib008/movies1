@@ -5,13 +5,13 @@ import Search from "./search";
 import NumResults from "./numResults";
 // Navbar component that combines Logo, Input, and NumResults components
 
-function Navbar() {
+function Navbar({ movies }) {
   return (
     <div>
       <nav className="nav-bar">
         <Logo />
         <Search />
-        <NumResults />
+        <NumResults movies={movies} />
       </nav>
     </div>
   );

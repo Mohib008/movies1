@@ -2,11 +2,13 @@
 import React from "react";
 import { useState } from "react";
 
-function watchedMoviesList({ watched }) {
+function watchedMoviesList({ movies }) {
+  // Initialize movies with the passed prop, or use an empty array if not provided
+
   return (
     <div>
       <ul className="list">
-        {watched.map((movie) => (
+        {movies?.map((movie) => (
           <li key={movie.imdbID}>
             <img src={movie.Poster} alt={`${movie.Title} poster`} />
             <h3>{movie.Title}</h3>

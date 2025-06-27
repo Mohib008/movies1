@@ -6,8 +6,9 @@ import WatchedSummary from "./watchedSummary";
 import WatchedMoviesList from "./watchedMoviesList";
 
 function Box2({ tempWatchedData }) {
-  // Initialize watched with tempWatchedData if provided, otherwise use an empty array
-  const [watched, setWatched] = useState(tempWatchedData);
+  // Initialize movies with tempWatchedData if provided, otherwise use an empty array
+  const [movies, setMovies] = useState(tempWatchedData);
+
   const [isOpen2, setIsOpen2] = useState(true);
 
   return (
@@ -23,8 +24,8 @@ function Box2({ tempWatchedData }) {
 
       {isOpen2 && (
         <>
-          <WatchedSummary watched={watched} />
-          <WatchedMoviesList watched={watched} />
+          <WatchedSummary watched={movies} />
+          <WatchedMoviesList movies={movies} />
         </>
       )}
     </div>
