@@ -2,7 +2,9 @@ import React from "react";
 import tempMovieData from "../tempMovieData";
 import tempWatchedData from "../tempWatchedData";
 
-function NumResults({ movies = tempMovieData }) {
+function NumResults({ movies = { tempWatchedData, tempMovieData } }) {
+  // If movies is not provided, use tempMovieData as a fallback
+  //const movieList = movies.tempMovieData || tempMovieData;
   return (
     <div>
       <p className="num-results">
