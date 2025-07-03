@@ -1,26 +1,18 @@
 "use client";
 import React from "react";
-
-
+import { Movie } from "../types"; // Adjust the import path as necessary
 
 // (your existing imports)
-
-type Movie = {
-  imdbID: string;
-  Title: string;
-  Year: string;
-  Poster: string;
-};
 
 interface NavbarProps {
   children: React.ReactNode;
   movies: Movie[];
 }
 
-export default function Navbar({ children, movies }: NavbarProps) {
+export default function Navbar({ children }: NavbarProps) {
   return (
     <div>
       <nav className="nav-bar">{children}</nav>
     </div>
   );
-};
+}
