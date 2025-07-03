@@ -5,31 +5,25 @@ import React, { useState } from "react";
 import WatchedSummary from "./watchedSummary";
 import WatchedMoviesList from "./watchedMoviesList";
 
-function Box2({ tempWatchedData }) {
+function Box({ children }) {
   // Initialize movies with tempWatchedData if provided, otherwise use an empty array
-  const [movies, setMovies] = useState(tempWatchedData);
 
-  const [isOpen2, setIsOpen2] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <div className="box">
       <button
         className="btn-toggle"
         onClick={() => {
-          setIsOpen2((open) => !open);
+          setIsOpen((open) => !open);
         }}
       >
-        {isOpen2 ? "–" : "+"}
+        {isOpen ? "–" : "+"}
       </button>
 
-      {isOpen2 && (
-        <>
-          <WatchedSummary watched={movies} />
-          <WatchedMoviesList movies={movies} />
-        </>
-      )}
+      {isOpen && children}
     </div>
   );
 }
 
-export default React.memo(Box2);
+export default React.memo(Box);
