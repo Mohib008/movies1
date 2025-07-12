@@ -7,14 +7,15 @@ function Star({ onRate, full, onHoverIn, onHoverOut }) {
     <span
       role="button"
       onClick={onRate}
-      className="cursor-pointer w-8 h-8 flex items-center justify-center transition-transform duration-200 ease-in-out hover:scale-110"
+      className="cursor-pointer w-10 h-10 flex items-center justify-center transition-transform duration-200 ease-in-out hover:scale-110"
     >
       {full ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
-          fill="#000"
-          stroke="#000"
+          fill="#fcc419"
+          stroke="#fcc419"
+          strokeWidth="1.5"
           role="button"
           onMouseEnter={onHoverIn}
           onMouseLeave={onHoverOut}
@@ -31,7 +32,7 @@ function Star({ onRate, full, onHoverIn, onHoverOut }) {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke="#000"
+          stroke="#fcc419"
           onMouseEnter={onHoverIn}
           onMouseLeave={onHoverOut}
         >

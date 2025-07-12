@@ -13,7 +13,7 @@ function Rating({ maxRating = 5 }) {
   // This function updates the rating state when a star is clicked.
   return (
     <div className="flex items-center gap-4">
-      <div className="flex items-center gap-4 bg-white p-4 rounded-lg w-60 h-12 justify-center transition-all duration-300 ease-in-out">
+      <div className="flex items-center gap-4  p-4 rounded-lg w-60 h-12 justify-center transition-all duration-300 ease-in-out">
         {Array.from({ length: maxRating }, (_, i) => (
           <Star
             key={i}
@@ -24,7 +24,7 @@ function Rating({ maxRating = 5 }) {
           />
         ))}
       </div>
-      <p className="text-gray-300 text-3xl font-bold">
+      <p className="text-yellow-300 text-4xl font-bold">
         {tempRating || rating || ""}
       </p>
     </div>
