@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { useState } from "react";
 
 function watchedMoviesList({ movies }) {
   // Initialize movies with the passed prop, or use an empty array if not provided

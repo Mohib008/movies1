@@ -5,7 +5,7 @@ function Logo() {
     <div>
       <div className="logo">
         <span role="img">🍿</span>
-        <h1>usePopcorn</h1>
+        <h1>Movies1</h1>
       </div>
     </div>
   );
