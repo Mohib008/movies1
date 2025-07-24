@@ -11,17 +11,21 @@ import NumResults from "@/app/components/Navbar/numResults";
 import MoviesList from "@/app/components/Box/moviesList";
 import WatchedSummary from "@/app/components/Box/watchedSummary";
 import WatchedMoviesList from "@/app/components/Box/watchedMoviesList";
+//import Loader from "@/app/components/loading";
 import { useEffect, useState } from "react";
 
 const KEY = "9001e482";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [watched] = useState([]);
   const query = "s=batman"; // Example query, can be modified
 
   useEffect(function () {
     async function fetchData() {
+      setIsLoading(true); // Set loading state to true before fetching
+
       try {
         // Uncomment the following lines to fetch data dynamically
         // Fetching data from the OMDB API
@@ -30,7 +34,8 @@ export default function Home() {
         );
         const data = await res.json();
         setMovies(data.Search || []);
-        console.log(data.Search);
+        setIsLoading(false); // Set loading state to false after fetching
+        // Uncomment the following lines to use local data
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -47,7 +52,13 @@ export default function Home() {
       </Navbar>
       <main className="main">
         <Box>
-          <MoviesList movies={movies} />
+          {isLoading ? (
+            <p className="flex flex-col items-center animate-pulse justify-center text-2xl text-gray-300 dark:text-gray-500 font-bold from-neutral-600 text-center m-100">
+              Loading...
+            </p>
+          ) : (
+            <MoviesList movies={movies} />
+          )}
         </Box>
         <Box>
           <WatchedSummary watched={watched} />
