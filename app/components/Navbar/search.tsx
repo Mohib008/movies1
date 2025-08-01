@@ -1,10 +1,12 @@
 "use client";
 import React from "react";
-import { useState } from "react";
 
-function Search() {
-  const [query, setQuery] = useState("");
+interface SearchProps {
+  query: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+}
 
+function Search({ query, setQuery }: SearchProps) {
   return (
     <div>
       <input
