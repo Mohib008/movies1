@@ -1,9 +1,6 @@
-//import App from "@/app/components/App";
 "use client";
 import Navbar from "@/app/components/Navbar/navbar";
 import "./globals.css";
-//import tempMovieData from "@/app/components/tempMovieData";
-//import tempWatchedData from "@/app/components/tempWatchedData";
 import Box from "@/app/components/Box/box";
 import Logo from "@/app/components/Navbar/logo";
 import Search from "@/app/components/Navbar/search";
@@ -11,8 +8,10 @@ import NumResults from "@/app/components/Navbar/numResults";
 import MoviesList from "@/app/components/Box/moviesList";
 import WatchedSummary from "@/app/components/Box/watchedSummary";
 import WatchedMoviesList from "@/app/components/Box/watchedMoviesList";
-//import Loader from "@/app/components/loading";
+import MoviesDetails from "@/app/components/MoviesDetails";
 import { useEffect, useState } from "react";
+
+// API key for OMDb API
 
 const KEY = "9001e482";
 
@@ -20,9 +19,35 @@ export default function Home() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [watched] = useState([]);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("Prison"); // Default query
   const [error, setError] = useState("");
   //const tempQuery = "s=superman"; // Example query, can be modified
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  interface Movie {
+    imdbID: string;
+    Title: string;
+    Year: string;
+    Poster: string;
+    [key: string]: any;
+  }
+
+  interface WatchedMovie {
+    imdbID: string;
+    Title: string;
+    Year: string;
+    Poster: string;
+    rating?: number;
+    [key: string]: any;
+  }
+
+  function handleMovieSelect(id: string): void {
+    setSelectedId((selectedId) => (selectedId === id ? null : id));
+    // Toggle selection: if the same movie is clicked again, deselect it
+  }
+  function handleCloseMovieSelect(): void {
+    setSelectedId(null);
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -96,12 +121,21 @@ export default function Home() {
               {error}
             </p>
           ) : (
-            <MoviesList movies={movies} />
+            <MoviesList movies={movies} onSelectedMovies={handleMovieSelect} />
           )}
         </Box>
         <Box>
-          <WatchedSummary watched={watched} />
-          <WatchedMoviesList movies={watched} />
+          {selectedId ? (
+            <MoviesDetails
+              selectedId={selectedId}
+              onClose={handleCloseMovieSelect}
+            />
+          ) : (
+            <>
+              <WatchedSummary watched={watched} />
+              <WatchedMoviesList movies={watched} />
+            </>
+          )}
         </Box>
       </main>
     </div>
