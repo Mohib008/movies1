@@ -24,23 +24,6 @@ export default function Home() {
   //const tempQuery = "s=superman"; // Example query, can be modified
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  interface Movie {
-    imdbID: string;
-    Title: string;
-    Year: string;
-    Poster: string;
-    [key: string]: any;
-  }
-
-  interface WatchedMovie {
-    imdbID: string;
-    Title: string;
-    Year: string;
-    Poster: string;
-    rating?: number;
-    [key: string]: any;
-  }
-
   function handleMovieSelect(id: string): void {
     setSelectedId((selectedId) => (selectedId === id ? null : id));
     // Toggle selection: if the same movie is clicked again, deselect it
