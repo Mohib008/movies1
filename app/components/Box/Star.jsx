@@ -7,7 +7,7 @@ function Star({ onRate, full, onHoverIn, onHoverOut }) {
     <span
       role="button"
       onClick={onRate}
-      className="cursor-pointer w-10 h-10 flex items-center justify-center transition-transform duration-200 ease-in-out hover:scale-110"
+      className="cursor-pointer w-8 h-8 flex items-center justify-center transition-transform duration-200 ease-in-out hover:scale-110"
     >
       {full ? (
         <svg
