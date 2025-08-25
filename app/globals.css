@@ -313,7 +313,7 @@ body {
   font-weight: 600;
   display: flex;
   flex-direction: column;
-  gap: 2.4rem;
+  gap: 2rem;
 }
 
 .btn-add {
