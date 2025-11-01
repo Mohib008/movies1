@@ -8,21 +8,21 @@ function Star({ onRate, full, half, onHoverIn, onHoverOut, index }) {
       onClick={onRate}
       onMouseEnter={onHoverIn}
       onMouseLeave={onHoverOut}
-      className="cursor-pointer w-8 h-8 flex items-center justify-center transition-transform duration-150 ease-in-out hover:scale-110"
+      className="cursor-pointer w-6 h-6 flex items-center justify-center transition-transform duration-150 ease-in-out hover:scale-110"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
-        className="w-8 h-8 shrink-0"
+        className="w-6 h-6 shrink-0"
         stroke="#fcc419"
         strokeWidth="2"
       >
-        <defs>
+        <dev>
           <linearGradient id={`half-fill-${index}`}>
             <stop offset="50%" stopColor="#fcc419" />
             <stop offset="50%" stopColor="transparent" />
           </linearGradient>
-        </defs>
+        </dev>
 
         <path
           strokeLinecap="round"

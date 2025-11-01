@@ -63,10 +63,11 @@ export default function MoviesDetails({ selectedId, onClose }) {
               <span>🔖 {genre}</span>
             </div>
           </header>
-          <section className="details-info">
-            <div className="rating">
-              <Rating />
+          <section className="details-info mt-4 space-y-2 flex items-center justify-center">
+            <div className="bg-zinc-900/50 backdrop-blur-sm rounded-2xl w-full shadow-lg p-4 border border-zinc-800">
+              <Rating maxRating={5} />
             </div>
+
             <p>
               💬 <em>{plot}</em>
             </p>
