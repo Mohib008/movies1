@@ -60,7 +60,7 @@ export default function MoviesDetails({ selectedId, onClose }) {
             <div
               className="bg-zinc-900/50 backdrop-blur-sm rounded-2xl w-full shadow-lg p-4 border border-zinc-800 flex justify-center"
               style={{
-                minHeight: "100px", // Prevent layout jump
+                minHeight: "50px", // Prevent layout jump
                 overflow: "hidden",
                 willChange: "transform",
               }}
