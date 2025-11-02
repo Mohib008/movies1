@@ -116,7 +116,7 @@ body {
 }
 
 .search {
-  justify-self: center;
+  justify-content: center;
   border: none;
   padding: 1.1rem 1.6rem;
   font-size: 1.8rem;
@@ -126,7 +126,6 @@ body {
   color: var(--color-text);
 
   /* background-color: var(--color-background-900); */
-  background-color: var(--color-primary-light);
 }
 
 .search::placeholder {

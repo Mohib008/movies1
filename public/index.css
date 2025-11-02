@@ -101,7 +101,6 @@ body {
   color: var(--color-text);
 
   /* background-color: var(--color-background-900); */
-  background-color: var(--color-primary-light);
 }
 
 .search::placeholder {
