@@ -8,8 +8,8 @@ interface NumResultsProps {
 function NumResults({ movies = [] }: NumResultsProps) {
   return (
     <div>
-      <p className="num-results">
-        Found <strong>{movies.length}</strong> results
+      <p className="num-results text-sm flex items-center justify-center gap-2 text-[#fcc419] dark:text-[#fcc419]">
+         <strong>{movies.length}</strong> results
       </p>
     </div>
   );
