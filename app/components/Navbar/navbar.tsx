@@ -33,14 +33,13 @@ export default function Navbar({ children }: NavbarProps) {
         }`}
         style={{ height: `${navbarHeight - 20}px` }}
       >
-        {/* Animated Logo with larger text */}
+        {/* Animated Logo */}
         <motion.div
           className="flex items-center gap-3 cursor-pointer px-5 py-3 rounded-lg"
           whileHover={{
             scale: 1.05,
             textShadow:
               "0 0 12px rgba(250,204,21,0.9), 0 0 24px rgba(250,204,21,0.7)",
-            backgroundColor: "rgba(255,255,255,0.1)",
           }}
           transition={{ type: "spring", stiffness: 300, damping: 15 }}
         >
@@ -52,7 +51,7 @@ export default function Navbar({ children }: NavbarProps) {
           </motion.div>
 
           <motion.span className="text-3xl font-bold text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.9)] px-3">
-            MovieHub
+            MoviesSwift
           </motion.span>
 
           <motion.div
@@ -64,7 +63,7 @@ export default function Navbar({ children }: NavbarProps) {
           </motion.div>
         </motion.div>
 
-        {/* Desktop Menu with larger text */}
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-12">
           {links.map((link) => (
             <motion.a
@@ -76,24 +75,22 @@ export default function Navbar({ children }: NavbarProps) {
                   "0 0 12px rgba(250,204,21,0.9), 0 0 24px rgba(250,204,21,0.7)",
               }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="text-yellow-400 text-2xl font-semibold drop-shadow-[0_0_6px_rgba(250,204,21,0.8)] px-5 py-2 rounded-lg hover:bg-white/10"
+              className="text-yellow-400 text-2xl font-semibold drop-shadow-[0_0_6px_rgba(250,204,21,0.8)] px-5 py-2 rounded-lg"
             >
               {link.name}
             </motion.a>
           ))}
         </div>
 
-        {/* Right Side (children) with more spacing */}
+        {/* Right Side (children) */}
         <div className="flex items-center gap-5">
           {React.Children.map(children, (child) => (
-            <div className="px-4 py-2">
-              {child}
-            </div>
+            <div className="px-4 py-2">{child}</div>
           ))}
         </div>
       </nav>
 
-      {/* Spacer to prevent overlap */}
+      {/* Spacer */}
       <div style={{ height: `${navbarHeight + 20}px` }} />
     </>
   );
