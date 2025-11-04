@@ -36,7 +36,7 @@ body {
 
 * {
   margin: 0;
-  padding: 0;
+
   box-sizing: border-box;
 }
 
@@ -50,7 +50,6 @@ body {
 
   color: var(--color-text);
   background-color: var(--color-background-900);
-  padding: 2.4rem;
 }
 
 /* ******* */
@@ -60,7 +59,7 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   height: 7.2rem;
-  padding: 0 3.2rem;
+  padding: 0;
   background-color: var(--color-primary);
   border-radius: 0.9rem;
 }
