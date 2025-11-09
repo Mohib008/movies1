@@ -8,6 +8,7 @@ const KEY = "9001e482";
 export default function MoviesDetails({ selectedId, onClose }) {
   const [movies, setMovies] = useState({});
   const [loading, setLoading] = useState(false);
+  const [like, setLike] = useState(0);
 
   useEffect(() => {
     const getMovieDetails = async () => {
@@ -78,6 +79,11 @@ export default function MoviesDetails({ selectedId, onClose }) {
           </section>
 
           <div>{selectedId}</div>
+          <div>
+            <button className="" onClick={() => setLike((like) => like + 1)}> 
+              👍 {like} Likes
+            </button>
+          </div>
         </>
       )}
     </div>

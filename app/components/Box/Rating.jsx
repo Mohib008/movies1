@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Star as StarIcon } from "lucide-react";
 
@@ -7,6 +7,7 @@ function Rating({ maxRating = 10 }) {
   const [rating, setRating] = useState(0);
   const [tempRating, setTempRating] = useState(0);
   const [clicked, setClicked] = useState(false);
+  const starRefs = useRef([]);
 
   const handleRating = (r) => {
     setRating(r);
@@ -14,79 +15,141 @@ function Rating({ maxRating = 10 }) {
     setTimeout(() => setClicked(false), 300);
   };
 
-  const current = tempRating || rating;
-  const showBox = tempRating > 0 || clicked; // box only appears on hover or click
+  const handleMouseMove = (index, e) => {
+    const star = starRefs.current[index];
+    if (!star) return;
+    const { left, width } = star.getBoundingClientRect();
+    const percent = (e.clientX - left) / width;
+    const hoverValue = index + percent;
+    setTempRating(Math.min(hoverValue, maxRating));
+  };
 
+  const current = tempRating || rating;
+  const active = rating > 0 || tempRating > 0 || clicked;
   const glowIntensity = current / maxRating;
 
-  const pulse = {
-    animate: {
-      boxShadow: [
-        `0 0 ${10 * glowIntensity}px rgba(250,204,21,${0.4 * glowIntensity})`,
-        `0 0 ${18 * glowIntensity}px rgba(250,204,21,${0.9 * glowIntensity})`,
-        `0 0 ${10 * glowIntensity}px rgba(250,204,21,${0.4 * glowIntensity})`,
-      ],
-      scale: [1, 1 + 0.05 * glowIntensity, 1],
-    },
-    transition: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+  const getGlowColor = (i) => {
+    if (i < 0.3) return "rgba(250,204,21,1)";
+    if (i < 0.6) return "rgba(253,186,116,1)";
+    if (i < 0.8) return "rgba(249,115,22,1)";
+    return "rgba(239,68,68,1)";
+  };
+
+  const getBackgroundGradient = (i) => {
+    if (i === 0)
+      return "linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.05))";
+    if (i < 0.3)
+      return "linear-gradient(135deg, rgba(250,204,21,0.15), rgba(250,204,21,0.05))";
+    if (i < 0.6)
+      return "linear-gradient(135deg, rgba(253,186,116,0.2), rgba(250,204,21,0.05))";
+    if (i < 0.8)
+      return "linear-gradient(135deg, rgba(249,115,22,0.25), rgba(253,186,116,0.1))";
+    return "linear-gradient(135deg, rgba(239,68,68,0.3), rgba(249,115,22,0.1))";
+  };
+
+  const glowColor = getGlowColor(glowIntensity);
+  const backgroundGradient = getBackgroundGradient(glowIntensity);
+
+  const breathing = {
+    scale: active ? [1, 1.015, 1] : 1,
+    opacity: active ? [1, 0.97, 1] : 1,
+    transition: { duration: 4, ease: "easeInOut", repeat: active ? Infinity : 0 },
+  };
+
+  const cardSize = "2.5rem";
+  const starSize = "1.5rem";
+  const numberSize = "1.5rem";
+  const gapSize = "0.5rem";
+
+  const getStarFill = (index) => {
+    const fullValue = index + 1;
+    if (current >= fullValue) return 100;
+    if (current < index) return 0;
+    return (current - index) * 100;
   };
 
   return (
-    <div className="flex items-center justify-center gap-3 p-2 h-auto">
-      {/* ⭐ Stars */}
-      <div className="flex items-center gap-2">
+    <motion.div
+      animate={breathing}
+      className="flex items-center justify-center rounded-2xl shadow-inner"
+      style={{
+        gap: gapSize,
+        padding: gapSize,
+        background: backgroundGradient,
+        boxShadow: active
+          ? `0 0 ${0.25 + glowIntensity * 0.4}rem ${glowColor}30 inset, 0 0 ${
+              0.125 + glowIntensity * 0.25
+            }rem ${glowColor}30`
+          : "inset 0 0 0.1rem rgba(0,0,0,0.2)",
+        transition: "all 0.8s ease-in-out",
+      }}
+      onMouseLeave={() => setTempRating(0)}
+    >
+      {/* Stars */}
+      <div className="flex items-center" style={{ gap: gapSize }}>
         {Array.from({ length: maxRating }, (_, i) => {
-          const filled = tempRating ? tempRating >= i + 1 : rating >= i + 1;
+          const starIntensity = (i + 1) / maxRating;
+          const starColor = getGlowColor(starIntensity);
+          const fillPercent = getStarFill(i);
+
           return (
-            <motion.button
+            <motion.div
               key={i}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.95 }}
-              onMouseEnter={() => setTempRating(i + 1)}
-              onMouseLeave={() => setTempRating(0)}
+              ref={(el) => (starRefs.current[i] = el)}
+              onMouseMove={(e) => handleMouseMove(i, e)}
               onClick={() => handleRating(i + 1)}
-              className="focus:outline-none"
+              className="flex items-center justify-center rounded-lg border border-yellow-400/50 shadow-sm"
+              style={{
+                width: cardSize,
+                height: cardSize,
+                background: getBackgroundGradient(starIntensity),
+              }}
             >
-              <motion.div
-                animate={filled ? pulse.animate : { scale: 1 }}
-                transition={pulse.transition}
-                className="w-10 h-10 flex items-center justify-center rounded-lg bg-yellow-400/10 border border-yellow-400/50"
-              >
-                <StarIcon
-                  size={24}
-                  className={`transition-colors duration-200 ${
-                    filled
-                      ? "fill-yellow-400 text-yellow-400"
-                      : "text-gray-400 hover:text-yellow-300"
-                  }`}
-                />
-              </motion.div>
-            </motion.button>
+              <StarIcon
+                size={parseFloat(starSize) * 16}
+                style={{
+                  background: `linear-gradient(90deg, ${starColor} ${fillPercent}%, rgba(156,163,175,0.5) ${fillPercent}%)`,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  filter: `drop-shadow(0 0 ${
+                    0.1 + 0.1 * glowIntensity
+                  }rem ${starColor})`,
+                  transition: "filter 0.2s ease-out, background 0.2s ease-out",
+                  cursor: "pointer",
+                }}
+              />
+            </motion.div>
           );
         })}
       </div>
 
-      {/* 🌟 Rating Number */}
+      {/* Rating number */}
       {current > 0 && (
         <motion.div
-          key={current}
-          initial={{ opacity: 0, scale: 0.8 }}
           animate={{
             opacity: 1,
-            scale: clicked ? 1.2 : 1,
-            boxShadow: showBox
-              ? `0 0 ${12 + glowIntensity * 16}px rgba(250,204,21,${
-                  0.6 + glowIntensity * 0.4
-                })`
+            scale: clicked ? 1.15 : active ? 1.08 : 1,
+            y: active ? "-0.125rem" : 0,
+            boxShadow: active
+              ? `0 0 ${0.1 + glowIntensity * 0.2}rem ${glowColor}`
               : "0 0 0 rgba(0,0,0,0)",
+            background: getBackgroundGradient(glowIntensity),
           }}
-          transition={{ duration: 0.25, type: "spring", stiffness: 200 }}
-          className={`w-10 h-10 flex items-center justify-center rounded-lg bg-yellow-400/10 border border-yellow-400/50 text-yellow-300 text-xl font-bold`}
+          transition={{ duration: 0.7, ease: "easeOut", type: "tween" }}
+          className="flex items-center justify-center rounded-lg border border-yellow-400/50 shadow-sm"
+          style={{
+            width: cardSize,
+            height: cardSize,
+            color: glowColor,
+            fontSize: numberSize,
+            textShadow: `0 0 ${0.1 + glowIntensity * 0.15}rem ${glowColor}`,
+            transition: "all 0.6s ease-in-out",
+          }}
         >
-          {current}
+          {current.toFixed(1)}
         </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 }
 
