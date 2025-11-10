@@ -1,10 +1,15 @@
 import React from "react";
 
 function MoviesList({ movies, onSelectedMovies }) {
+  const uniqueMovies = movies?.filter(
+    (movie, index, self) =>
+      index === self.findIndex((m) => m.imdbID === movie.imdbID)
+  );
+
   return (
     <div>
       <ul className="list list-movies">
-        {movies?.map((movie) => (
+        {uniqueMovies?.map((movie) => (
           <li key={movie.imdbID}>
             <img
               src={movie.Poster}

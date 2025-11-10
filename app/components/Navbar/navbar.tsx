@@ -2,9 +2,11 @@
 import React, { useState, useEffect } from "react";
 import { Film, Play } from "lucide-react";
 import { motion } from "framer-motion";
+import { Movie } from "../types";
 
 interface NavbarProps {
   children: React.ReactNode;
+  movies?: Movie[];
 }
 
 export default function Navbar({ children }: NavbarProps) {
