@@ -34,7 +34,7 @@ export default function LikeDislike() {
 
   const triggerPulse = (type) => {
     setPulse(type);
-    setTimeout(() => setPulse(null), 600); // slightly longer to show bright pulse
+    setTimeout(() => setPulse(null), 600);
   };
 
   return (
@@ -82,6 +82,23 @@ export default function LikeDislike() {
           transition: opacity 0.3s ease, filter 0.3s ease;
           pointer-events: none;
         }
+        .reflection {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 40%;
+          border-top-left-radius: 0.75rem;
+          border-top-right-radius: 0.75rem;
+          background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.6),
+            rgba(255, 255, 255, 0)
+          );
+          z-index: 5;
+          pointer-events: none;
+          mix-blend-mode: screen;
+        }
         .animate-pulse-gold {
           animation: pulse-gold 0.8s ease-in-out;
         }
@@ -100,22 +117,22 @@ export default function LikeDislike() {
           onMouseEnter={() => setHovered("like")}
           onMouseLeave={() => setHovered(null)}
         >
-          {/* Brighter Glow behind button */}
+          {/* Brighter glow behind button */}
           <div
             className={`glow ${pulse === "like" ? "animate-pulse-gold" : ""}`}
             style={{
               opacity: hovered === "like" ? 1 : 0.6,
               background:
                 userReaction === "like"
-                  ? "radial-gradient(circle, rgba(250,204,21,0.85) 0%, rgba(0,0,0,0) 75%)"
+                  ? "radial-gradient(circle, rgba(250,204,21,0.9) 0%, rgba(0,0,0,0) 75%)"
                   : "radial-gradient(circle, rgba(250,204,21,0.5) 0%, rgba(0,0,0,0) 75%)",
-              filter: hovered === "like" ? "blur(22px)" : "blur(14px)",
+              filter: hovered === "like" ? "blur(24px)" : "blur(14px)",
             }}
           ></div>
 
           <button
             onClick={handleLike}
-            className={`relative z-10 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ease-in-out backdrop-blur-md border
+            className={`relative z-10 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ease-in-out backdrop-blur-md border overflow-hidden
               ${
                 userReaction === "like"
                   ? "bg-white/60 border-white/30 text-black"
@@ -123,7 +140,9 @@ export default function LikeDislike() {
               }
               active:scale-105 focus:scale-105 hover:border-white/40 hover:bg-white/40`}
           >
-            👍 Like ({likes})
+            <span className="relative z-10">👍 Like ({likes})</span>
+            {/* Reflection overlay */}
+            <span className="reflection"></span>
           </button>
         </div>
 
@@ -133,22 +152,22 @@ export default function LikeDislike() {
           onMouseEnter={() => setHovered("dislike")}
           onMouseLeave={() => setHovered(null)}
         >
-          {/* Brighter Glow behind button */}
+          {/* Brighter glow behind button */}
           <div
             className={`glow ${pulse === "dislike" ? "animate-pulse-red" : ""}`}
             style={{
               opacity: hovered === "dislike" ? 1 : 0.6,
               background:
                 userReaction === "dislike"
-                  ? "radial-gradient(circle, rgba(244,67,54,0.85) 0%, rgba(0,0,0,0) 75%)"
+                  ? "radial-gradient(circle, rgba(244,67,54,0.9) 0%, rgba(0,0,0,0) 75%)"
                   : "radial-gradient(circle, rgba(244,67,54,0.5) 0%, rgba(0,0,0,0) 75%)",
-              filter: hovered === "dislike" ? "blur(22px)" : "blur(14px)",
+              filter: hovered === "dislike" ? "blur(24px)" : "blur(14px)",
             }}
           ></div>
 
           <button
             onClick={handleDislike}
-            className={`relative z-10 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ease-in-out backdrop-blur-md border
+            className={`relative z-10 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ease-in-out backdrop-blur-md border overflow-hidden
               ${
                 userReaction === "dislike"
                   ? "bg-white/60 border-white/30 text-black"
@@ -156,7 +175,9 @@ export default function LikeDislike() {
               }
               active:scale-105 focus:scale-105 hover:border-white/40 hover:bg-white/40`}
           >
-            👎 Dislike ({dislikes})
+            <span className="relative z-10">👎 Dislike ({dislikes})</span>
+            {/* Reflection overlay */}
+            <span className="reflection"></span>
           </button>
         </div>
       </div>
