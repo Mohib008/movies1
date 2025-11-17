@@ -8,12 +8,12 @@ function Star({ onRate, full, half, onHoverIn, onHoverOut, index }) {
       onClick={onRate}
       onMouseEnter={onHoverIn}
       onMouseLeave={onHoverOut}
-      className="cursor-pointer w-6 h-6 flex items-center justify-center transition-transform duration-150 ease-in-out hover:scale-110"
+      className="cursor-pointer w-4 h-4 flex items-center justify-center transition-transform duration-150 ease-in-out hover:scale-110"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
-        className="w-6 h-6 shrink-0"
+        className="w-4 h-4 shrink-0"
         stroke="#fcc419"
         strokeWidth="2"
       >

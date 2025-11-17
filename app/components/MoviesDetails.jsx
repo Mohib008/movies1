@@ -66,7 +66,7 @@ export default function MoviesDetails({ selectedId, onClose }) {
                 willChange: "transform",
               }}
             >
-              <Rating maxRating={5} />
+              <Rating maxRating={10} size={8} />
             </div>
 
             <div className="space-y-2">
@@ -77,9 +77,6 @@ export default function MoviesDetails({ selectedId, onClose }) {
               <p>🎬 Directed by: {director}</p>
             </div>
           </section>
-
-          <div>{selectedId}</div>
-
           <LikeDislike />
         </>
       )}
