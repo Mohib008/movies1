@@ -87,7 +87,39 @@ export default function Home() {
         <NumResults movies={movies} />
       </Navbar>
 
-      {/* ✨ Prism Glass Ribbon just 1px below Navbar */}
+      {/* ✨ Main Content */}
+      <main className="main w-full max-w-[1800px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Box>
+            {isLoading ? (
+              <p className="flex flex-col items-center animate-pulse justify-center text-2xl text-gray-300 dark:text-gray-500 font-bold text-center">
+                Loading...
+              </p>
+            ) : error ? (
+              <p className="flex flex-col items-center justify-center text-2xl text-red-500 font-bold text-center">
+                {error}
+              </p>
+            ) : (
+              <MoviesList movies={movies} onSelectedMovies={handleMovieSelect} />
+            )}
+          </Box>
+
+          <Box>
+            {selectedId ? (
+              <MoviesDetails
+                selectedId={selectedId}
+                onClose={handleCloseMovieSelect}
+              />
+            ) : (
+              <>
+                <WatchedSummary watched={watched} />
+                <WatchedMoviesList movies={watched} />
+              </>
+            )}
+          </Box>
+        </div>
+      </main>
+          {/* ✨ Prism Glass Ribbon just 1px below Navbar */}
 <div className="relative w-full h-[20px] rounded-lg overflow-hidden backdrop-blur-md mt-1">
   <style jsx>{`
     /* Breathing pulse for background glow */
@@ -213,40 +245,6 @@ export default function Home() {
   <div className="glass-ribbon" />
   <div className="glow-overlay" />
 </div>
-
-
-      {/* ✨ Main Content */}
-      <main className="main w-full max-w-[1800px]">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Box>
-            {isLoading ? (
-              <p className="flex flex-col items-center animate-pulse justify-center text-2xl text-gray-300 dark:text-gray-500 font-bold text-center">
-                Loading...
-              </p>
-            ) : error ? (
-              <p className="flex flex-col items-center justify-center text-2xl text-red-500 font-bold text-center">
-                {error}
-              </p>
-            ) : (
-              <MoviesList movies={movies} onSelectedMovies={handleMovieSelect} />
-            )}
-          </Box>
-
-          <Box>
-            {selectedId ? (
-              <MoviesDetails
-                selectedId={selectedId}
-                onClose={handleCloseMovieSelect}
-              />
-            ) : (
-              <>
-                <WatchedSummary watched={watched} />
-                <WatchedMoviesList movies={watched} />
-              </>
-            )}
-          </Box>
-        </div>
-      </main>
     </div>
   );
 }
