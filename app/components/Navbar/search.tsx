@@ -81,7 +81,7 @@ function Search({ query, setQuery }: SearchProps) {
                   "0 0 24px rgba(250,204,21,0.8), 0 0 48px rgba(250,204,21,0.6)",
               }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.5, yoyo: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
             />
           )}
         </AnimatePresence>
