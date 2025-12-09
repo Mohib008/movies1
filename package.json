@@ -9,10 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "framer": "^2.4.1",
-    "framer-motion": "^12.23.24",
+    "framer-motion": "^12.23.25",
     "lucide-react": "^0.552.0",
-    "motion": "^12.23.24",
     "next": "^15.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
