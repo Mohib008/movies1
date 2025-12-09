@@ -12,12 +12,21 @@ import WatchedMoviesList from "@/app/components/Box/watchedMoviesList";
 import MoviesDetails from "@/app/components/MoviesDetails";
 import { useEffect, useState } from "react";
 
+type Movie = {
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
+};
+
+
 const KEY = "9001e482";
 
 export default function Home() {
-  const [movies, setMovies] = useState<any[]>([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [watched] = useState<any[]>([]);
+  const [watched] = useState<Movie[]>([]);
   const [query, setQuery] = useState("Prison");
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState<string | null>(null);
